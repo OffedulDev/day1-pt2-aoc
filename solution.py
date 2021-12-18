@@ -41,7 +41,7 @@ def main():
         else:
             continue
     
-    print(_increments) # _index
+    print(_increments)
 
 
 
