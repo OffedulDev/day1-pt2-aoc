@@ -1,32 +1,51 @@
-_prepareSumTab = []
+sums = []
+
+def sumAndAddToList(_3rd, _2nd, _1st):
 
 
+    res = _3rd + _2nd + _1st
+    sums.append(_3rd + _2nd + _1st)
 
-def prepareSum(element, index):
-    if len(_prepareSumTab) > 3:
-        _prepareSumTab.clear()
-    
-    _prepareSumTab.insert(index, int(element))
+
+    return "Added to list 'sums' number: " + str(res)
 
 
 def main():
-    _tab = open("input.in", "rt").read().split("\n")
-    _index = 0
-    _tabLen = len(_tab)
+    _file = open("input.in", "rt")
+    _fileContent = (_file.read()).split("\n")
+    _numbers = len(_fileContent)
+    _increments = 0
+    # _index = 0
+    
+    for i in _fileContent:
 
-    print(_tab)
-    while _index != 3:
-        _index += 1
-        prepareSum(_tab[_index], _index)
-    else:
-        sumTag()
-        _index = 0
+        if _fileContent.index(i) == (len(_fileContent) + 1):
+             sums.append(i)
+             sums.append(_fileContent[_fileContent.index(i) - 1])
+             break
 
-def sumTag():
-    firstSum = _prepareSumTab[0] + _prepareSumTab[1] + _prepareSumTab[2]
-    print(firstSum)
+        thirdNum = _fileContent[_fileContent.index(i)]
+        secondNum = _fileContent[_fileContent.index(i) - 1]
+        firstNum = _fileContent[_fileContent.index(i) - 2]
 
-    return int(firstSum)
+        
+        
+        sumAndAddToList(int(thirdNum), int(secondNum), int(firstNum))
+    
+    for i in sums:
+
+        if sums.index(i) == (len(sums) - 1): break
+
+        if int(i) < int(sums[sums.index(i) + 1]):
+            _increments += 1
+        else:
+            continue
+    
+    print(_increments) # _index
+
+
+
+
 
 if __name__ == "__main__":
     main()
